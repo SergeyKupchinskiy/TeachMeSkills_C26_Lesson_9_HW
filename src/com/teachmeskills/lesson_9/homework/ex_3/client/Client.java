@@ -1,40 +1,87 @@
 package com.teachmeskills.lesson_9.homework.ex_3.client;
 
 import com.teachmeskills.lesson_9.homework.ex_3.card.BaseCard;
-import com.teachmeskills.lesson_9.homework.ex_3.card.BelCard;
-import com.teachmeskills.lesson_9.homework.ex_3.card.MasterCard;
-import com.teachmeskills.lesson_9.homework.ex_3.card.VisaCard;
+
+import java.util.Date;
 
 public class Client {
-    public String name;
-    public String surname;
-    public String passportNumber;
-    public String dateOfBirth;
-    public int postCode;
-    public String country;
-    public String city;
-    public String street;
-    public int houseNumber;
-    public int apartmentNumber;
+    
+    private String name;
+    private String surname;
+    private String passportNumber;
+    private String birthDate;
+    private Address address;
+    private BaseCard[] cards;
 
-    public Client(String name, String surname, String passportNumber, String dateOfBirth,
-                  int postCode, String country, String city, String street, int houseNumber, int apartmentNumber) {
+    public Client(String name, String surname, String passportNumber, String birthDate, Address address, BaseCard[] cards) {
         this.name = name;
         this.surname = surname;
         this.passportNumber = passportNumber;
-        this.dateOfBirth = dateOfBirth;
-        this.postCode = postCode;
-        this.country = country;
-        this.city = city;
-        this.street = street;
-        this.houseNumber = houseNumber;
-        this.apartmentNumber = apartmentNumber;
+        this.birthDate = birthDate;
+        this.address = address;
+        this.cards = cards;
     }
-    public static Client client1 = new Client("Tom","Hardy","BL066001","15.09.1977",
-            640330,"Great Britain","London","Baker street",221,2);
-    BaseCard belCardClient1 = new BelCard("4300 2360 4453 5656",419,31009.8,0,BelCard.transferLimit,BelCard.transferFee);
-    BaseCard masterCardClient1 = new MasterCard("7890 6660 7877 9000",420,14057.6,1,MasterCard.transferLimit,MasterCard.transferFee);
-    BaseCard visaCardClient1 = new VisaCard("3232 4103 8887 5454",803,8033.6,2,VisaCard.transferLimit,VisaCard.transferFee);
 
-    public static BaseCard[] allCards = new BaseCard[]{client1.belCardClient1, client1.masterCardClient1, client1.visaCardClient1};
+    public BaseCard getCard(int id) {
+        int count = -1;
+        for(BaseCard baseCard: cards){
+            count++;
+            if (baseCard.getId() == id) {
+                break;
+            }
+        }
+        return cards[count];
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public BaseCard[] getCards() {
+        return cards;
+    }
+
+    public void setCards(BaseCard[] cards) {
+        this.cards = cards;
+    }
+
+    public String getPassportNumber() {
+        return passportNumber;
+    }
+
+    public void setPassportNumber(String passportNumber) {
+        this.passportNumber = passportNumber;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+    @Override
+    public String toString() {
+        return name + " " + surname;
+    }
 }
